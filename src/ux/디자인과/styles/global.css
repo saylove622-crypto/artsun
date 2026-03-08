@@ -1,0 +1,125 @@
+/* Fonts — @import must come first */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Shilla';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureM-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Shilla';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureB-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* CSS Custom Properties */
+:root {
+    --color-primary: #960000;
+    --color-primary-light: #c43030;
+    --color-primary-dark: #6a0000;
+    --color-secondary: #31466b;
+    --color-secondary-light: #5a7199;
+    --color-accent: #533b72;
+    --color-accent-light: #7e6199;
+    --color-bg: #0a0a0f;
+    --color-bg-paper: #12121a;
+    --color-text: #f0ece4;
+    --color-text-secondary: #b0a89c;
+    --color-border: rgba(240, 236, 228, 0.12);
+    --font-serif: 'Shilla', 'Noto Serif KR', serif;
+    --font-sans: 'Noto Sans KR', 'Inter', sans-serif;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: rgba(150, 0, 0, 0.4);
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary-dark);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Section Spacing */
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+
+/* Outline Decorative Line */
+.section-divider {
+    width: 60px;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    margin: 0 auto 32px;
+}
+
+/* Smooth link transitions */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-primary-light);
+}
+
+/* Image defaults */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Utility: sr-only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

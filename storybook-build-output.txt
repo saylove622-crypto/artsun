@@ -1,0 +1,14 @@
+﻿
+[90m??[39m  Building storybook v10.2.8
+[90m??[39m
+[32m??[39m  Cleaning outputDir: [36mstorybook-static[39m
+[90m??[39m
+[32m??[39m  Loading presets
+[90m??[39m
+[32m??[39m  Building manager..
+[90m??[39m
+[34m??[39m  Building preview..
+[90m??[39m
+[33m??[39m  No story files found for the specified pattern: [34msrc\**\*.mdx[39m
+[90m??[39m  [43mVite[49m [36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+[90m??[39m  [43mVite[49m transforming...
