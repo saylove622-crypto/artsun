@@ -253,7 +253,7 @@ export default function HeroSection() {
                             textAlign: 'center',
                         }}
                     >
-                        <Box sx={{ display: 'block', mb: 0.5 }}>
+                        <Box sx={{ display: 'block', mb: 0.5, whiteSpace: 'nowrap' }}>
                             {"경기도 지정 전문예술법인".split('').map((char, i) => {
                                 const charStart = i * 0.012;
                                 const charSpeed = 6;
@@ -265,7 +265,7 @@ export default function HeroSection() {
                                         variant="h1"
                                         sx={{
                                             display: 'inline-block',
-                                            fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.1rem' },
+                                            fontSize: { xs: '1.2rem', sm: '1.8rem', md: '2.1rem' },
                                             fontWeight: 400,
                                             fontFamily: '"Noto Sans KR", sans-serif',
                                             color: theme.palette.text.secondary,
@@ -281,37 +281,73 @@ export default function HeroSection() {
                                 );
                             })}
                         </Box>
-                        <Box sx={{ display: 'block' }}>
-                            {"(사)아트컴퍼니 아르-선".split('').map((char, i) => {
-                                const isPrefix = i < 3;
-                                const globalIndex = i + 13;
-                                const charStart = globalIndex * 0.015;
-                                const charSpeed = 6;
-                                const charProgress = Math.min(1, Math.max(0, (scrollProgress - charStart) * charSpeed));
-                                return (
-                                    <Typography
-                                        key={`main-${i}`}
-                                        component="span"
-                                        variant="h1"
-                                        sx={{
-                                            display: 'inline-block',
-                                            fontSize: { xs: '3rem', sm: '4.5rem', md: '5.2rem' },
-                                            fontWeight: 700,
-                                            color: theme.palette.primary.main,
-                                            opacity: charProgress,
-                                            transform: `translateY(${(1 - charProgress) * 40}px) rotate(${(1 - charProgress) * 10}deg)`,
-                                            transition: 'transform 0.05s linear, opacity 0.05s linear',
-                                            letterSpacing: isPrefix ? '0em' : '0.04em',
-                                            whiteSpace: char === ' ' ? 'pre' : 'normal',
-                                            textShadow: activeVideoId ? '0 2px 20px rgba(0,0,0,0.6)' : 'none',
-                                            verticalAlign: 'baseline',
-                                            mr: i === 2 ? 1 : 0,
-                                        }}
-                                    >
-                                        {char}
-                                    </Typography>
-                                );
-                            })}
+                        <Box sx={{ display: 'block', textAlign: 'center' }}>
+                            {/* Part 1: (사)아트컴퍼니 */}
+                            <Box sx={{ display: { xs: 'block', sm: 'inline-block' }, whiteSpace: 'nowrap' }}>
+                                {"(사)아트컴퍼니".split('').map((char, i) => {
+                                    const isPrefix = i < 3;
+                                    const globalIndex = i + 13;
+                                    const charStart = globalIndex * 0.015;
+                                    const charSpeed = 6;
+                                    const charProgress = Math.min(1, Math.max(0, (scrollProgress - charStart) * charSpeed));
+                                    return (
+                                        <Typography
+                                            key={`main-1-${i}`}
+                                            component="span"
+                                            variant="h1"
+                                            sx={{
+                                                display: 'inline-block',
+                                                fontSize: { xs: '2.6rem', sm: '4.5rem', md: '5.2rem' },
+                                                fontWeight: 700,
+                                                color: theme.palette.primary.main,
+                                                opacity: charProgress,
+                                                transform: `translateY(${(1 - charProgress) * 40}px) rotate(${(1 - charProgress) * 10}deg)`,
+                                                transition: 'transform 0.05s linear, opacity 0.05s linear',
+                                                letterSpacing: isPrefix ? '0em' : '0.04em',
+                                                textShadow: activeVideoId ? '0 2px 20px rgba(0,0,0,0.6)' : 'none',
+                                                verticalAlign: 'baseline',
+                                                mr: i === 2 ? 0.5 : 0,
+                                            }}
+                                        >
+                                            {char}
+                                        </Typography>
+                                    );
+                                })}
+                            </Box>
+
+                            {/* Desktop Spacer */}
+                            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-block' }, width: { sm: '0.3em', md: '0.4em' } }} />
+
+                            {/* Part 2: 아르-선 */}
+                            <Box sx={{ display: { xs: 'block', sm: 'inline-block' }, whiteSpace: 'nowrap', mt: { xs: -1.5, sm: 0 } }}>
+                                {"아르-선".split('').map((char, i) => {
+                                    const globalIndex = i + 13 + 9; // Offset by Part 1 length (8) + space (1)
+                                    const charStart = globalIndex * 0.015;
+                                    const charSpeed = 6;
+                                    const charProgress = Math.min(1, Math.max(0, (scrollProgress - charStart) * charSpeed));
+                                    return (
+                                        <Typography
+                                            key={`main-2-${i}`}
+                                            component="span"
+                                            variant="h1"
+                                            sx={{
+                                                display: 'inline-block',
+                                                fontSize: { xs: '2.6rem', sm: '4.5rem', md: '5.2rem' },
+                                                fontWeight: 700,
+                                                color: theme.palette.primary.main,
+                                                opacity: charProgress,
+                                                transform: `translateY(${(1 - charProgress) * 40}px) rotate(${(1 - charProgress) * 10}deg)`,
+                                                transition: 'transform 0.05s linear, opacity 0.05s linear',
+                                                letterSpacing: '0.04em',
+                                                textShadow: activeVideoId ? '0 2px 20px rgba(0,0,0,0.6)' : 'none',
+                                                verticalAlign: 'baseline',
+                                            }}
+                                        >
+                                            {char}
+                                        </Typography>
+                                    );
+                                })}
+                            </Box>
                         </Box>
                     </Box>
 
