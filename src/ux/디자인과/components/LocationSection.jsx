@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Container, Typography, Grid, Paper, Button } from '@mui/material';
+import { Box, Container, Typography, Button } from '@mui/material';
 import { supabase } from '../../../system/utils/supabase';
 import MapIcon from '@mui/icons-material/Map';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -61,28 +61,7 @@ export default function LocationSection() {
                         )}
                     </Box>
 
-                    {/* Map Card */}
-                    <Paper sx={{
-                        height: { xs: 300, md: 450 },
-                        width: '100%',
-                        borderRadius: 2,
-                        overflow: 'hidden',
-                        boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
-                        border: '1px solid',
-                        borderColor: 'divider',
-                        bgcolor: '#fdfbf6',
-                    }}>
-                        <iframe
-                            title="ArSeon Location"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            loading="lazy"
-                            allowFullScreen
-                            referrerPolicy="no-referrer-when-downgrade"
-                            src={`https://www.google.com/maps?q=${encodeURIComponent('경기도 화성시 능동 710-2 성호아파트 상가')}&hl=ko&z=16&output=embed`}
-                        ></iframe>
-                    </Paper>
+
                 </Box>
             </Container>
         </Box>
