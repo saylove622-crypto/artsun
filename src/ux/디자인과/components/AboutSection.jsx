@@ -221,14 +221,13 @@ export default function AboutSection() {
                             </Typography>
                             <Typography
                                 variant="body1"
+                                className="cjk-justify"
                                 sx={{
                                     color: 'text.primary',
                                     opacity: 0.85,
                                     pl: { xs: 0, md: 3.5 },
-                                    fontSize: '0.92rem',
+                                    fontSize: { xs: '0.88rem', md: '0.92rem' },
                                     lineHeight: 2,
-                                    textAlign: 'justify',
-                                    wordBreak: 'keep-all'
                                 }}
                             >
                                 사단법인 아트컴퍼니 아르-선은 2016년 6월7일 설립 후 경기도 지정 전문예술법인단체로 성장하여 우리나라 고유의 전통문화와 타악 퍼포먼스를 접목하여 우리나라만의 전통 가락 예술을 연구하고 교육, 보존, 창작, 공연함으로써 안으로는 우리 민족의 유구한 역사와 찬란한 문화를 계승하고 밖으로는 우리 민족 문화의 우수성과 드높은 기상을 세계 전 인류와 더불어 공유함을 목적으로 합니다.
@@ -361,9 +360,10 @@ export default function AboutSection() {
                                         </Typography>
                                         <Typography
                                             variant="body2"
+                                            className="cjk-justify"
                                             sx={{
                                                 color: 'text.secondary',
-                                                fontSize: '0.8rem',
+                                                fontSize: { xs: '0.78rem', md: '0.8rem' },
                                                 lineHeight: 1.8,
                                                 maxWidth: { sm: '240px' },
                                             }}

@@ -110,10 +110,17 @@ export default function HeroSection() {
                     <Box
                         sx={{
                             position: 'absolute',
-                            inset: '-60px', // 브라우저 iframe 마스킹용
+                            inset: { xs: 0, md: '-60px' },
                             opacity: isFading ? 0 : 1,
                             transition: 'opacity 0.8s ease-in-out',
                             zIndex: 1,
+                            // 모바일 커버 스케일링:
+                            // 16:9 영상이 세로(100vh)를 가득 쉡도록
+                            // min-width: 177.78vh = 100vh * (16/9)
+                            // iframe 자체를 콰 후 가운데 정렬
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
                         {/* 로딩 중 썸네일 배경 */}
@@ -138,10 +145,17 @@ export default function HeroSection() {
                             title="배경 공연 영상"
                             allow="autoplay; encrypted-media"
                             sx={{
+                                // 모바일: 세로 높이를 가득 치도록 cover 스케일링
+                                // 포트리틸에선 높이(100vh)가 너비보다 크므로
+                                // min-width: 177.78vh 로 너비를 자동 확장
+                                width: { xs: '177.78vh', md: '100%' },
+                                height: { xs: '100vh', md: '100%' },
+                                minWidth: { xs: '100%' },
+                                minHeight: { xs: '100%' },
                                 position: 'absolute',
-                                inset: 0,
-                                width: '100%',
-                                height: '100%',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
                                 border: 'none',
                                 pointerEvents: 'none',
                                 zIndex: 1,
@@ -371,8 +385,9 @@ export default function HeroSection() {
                     {/* Slogan */}
                     <Typography
                         variant="h5"
+                        className="cjk-text"
                         sx={{
-                            fontSize: { xs: '0.9rem', sm: '1.05rem', md: '1.2rem' },
+                            fontSize: { xs: '0.88rem', sm: '1.05rem', md: '1.2rem' },
                             color: theme.palette.text.primary,
                             textAlign: 'center',
                             fontWeight: 300,
@@ -381,7 +396,7 @@ export default function HeroSection() {
                             transition: 'transform 0.05s linear, opacity 0.05s linear',
                             letterSpacing: '0.08em',
                             lineHeight: 1.9,
-                            maxWidth: '500px',
+                            maxWidth: { xs: '280px', sm: '500px' },
                             textShadow: activeVideoId ? '0 2px 16px rgba(0,0,0,0.6)' : 'none',
                         }}
                     >

@@ -123,3 +123,53 @@ img {
     white-space: nowrap;
     border: 0;
 }
+
+/* ─── CJK 텍스트 줄바꿈 ─── */
+.cjk-text {
+    word-break: auto-phrase;    /* Chrome 119+: 구문 단위 자연 줄바꿈 */
+    word-break: keep-all;       /* fallback */
+    overflow-wrap: break-word;
+}
+
+/* 단락 본문: 양쪽 정렬 + 단어 분리 허용 + 하이픈 */
+/*
+ * text-align: justify          → 좌우 양쪽 정렬
+ * word-break: break-all        → 단어 중간에서도 쪼개기 허용
+ * hyphens: auto                → 쪼갤 때 하이픈(-) 자동 삽입
+ * overflow-wrap: break-word    → 추가 보조
+ *
+ * 단어를 쪼갤 수 있으면 justify가 어절 간격을 늘릴 필요가 없어짐
+ */
+.cjk-justify {
+    text-align: justify;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+/* ─── 모바일 반응형 보정 ─── */
+@media (max-width: 600px) {
+    /* 섹션 상하 여백 축소 */
+    .section {
+        padding: 60px 0;
+    }
+
+    /* 가로 스크롤 방지 */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* 컨테이너 측면 여백 */
+    .MuiContainer-root {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 긴 이메일·URL 주소 줄바꿈 */
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+        word-break: break-all;
+    }
+}

@@ -160,7 +160,7 @@ export default function RecruitmentSection() {
                 </Box>
 
                 {/* Sliding Content */}
-                <Box sx={{ position: 'relative', minHeight: { xs: 950, sm: 800, md: 600 } }}>
+                <Box sx={{ position: 'relative', minHeight: { xs: 'auto', sm: 800, md: 600 } }}>
                     <AnimatePresence initial={false} custom={direction}>
                         <motion.div
                             key={activeTab}
@@ -211,12 +211,12 @@ export default function RecruitmentSection() {
                                             >
                                                 <Typography
                                                     variant="h5"
+                                                    className="cjk-text"
                                                     sx={{
-                                                        fontSize: '1.05rem',
+                                                        fontSize: { xs: '0.95rem', md: '1.05rem' },
                                                         fontWeight: 600,
                                                         color: '#960000',
                                                         lineHeight: 1.7,
-                                                        wordBreak: 'keep-all',
                                                         fontFamily: '"Noto Serif KR", serif',
                                                     }}
                                                 >
@@ -261,12 +261,13 @@ export default function RecruitmentSection() {
                                             >
                                                 <Typography
                                                     variant="body2"
+                                                    className="cjk-justify"
                                                     sx={{
                                                         color: 'text.secondary',
                                                         fontStyle: 'italic',
                                                         textAlign: 'center',
                                                         lineHeight: 1.9,
-                                                        fontSize: '0.88rem',
+                                                        fontSize: { xs: '0.82rem', md: '0.88rem' },
                                                     }}
                                                 >
                                                     "전통예술을 통해 새로운 삶의 활력을 찾고,<br />행복한 소통을 나누고 싶으신 분들의 지원을 기다립니다"

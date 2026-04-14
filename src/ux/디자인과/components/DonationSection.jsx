@@ -148,12 +148,12 @@ export default function DonationSection() {
                                     아르선을 응원해 주세요
                                 </Typography>
                                 <Typography
+                                    className="cjk-justify"
                                     sx={{
                                         color: 'text.secondary',
                                         lineHeight: 1.6,
                                         mb: 2,
-                                        fontSize: '0.85rem',
-                                        wordBreak: 'keep-all',
+                                        fontSize: { xs: '0.82rem', md: '0.85rem' },
                                     }}
                                 >
                                     {donationData.message || '아르선의 예술 활동을 위해 따뜻한 마음을 나누어 주세요. 보내주신 후원금은 더 좋은 공연과 교육을 위해 소중히 사용됩니다.'}

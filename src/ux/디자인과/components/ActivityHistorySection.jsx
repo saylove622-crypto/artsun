@@ -242,7 +242,7 @@ export default function ActivityHistorySection() {
                                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                                             {pagedNotices.map((note, idx) => (
                                                 <Box key={note.id}>
-                                                    <Typography variant="body2" sx={{ lineHeight: 1.8, fontSize: '0.85rem', color: 'rgba(255,255,255,0.9)' }}>
+                                                    <Typography variant="body2" className="cjk-text" sx={{ lineHeight: 1.8, fontSize: { xs: '0.82rem', md: '0.85rem' }, color: 'rgba(255,255,255,0.9)' }}>
                                                         {note.content}
                                                     </Typography>
                                                     {idx < pagedNotices.length - 1 && (

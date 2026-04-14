@@ -152,7 +152,8 @@ export default function PerformancesSection() {
                                         <Typography
                                             variant="body2"
                                             color="text.secondary"
-                                            sx={{ lineHeight: 1.8, fontSize: '0.85rem' }}
+                                            className="cjk-justify"
+                                            sx={{ lineHeight: 1.8, fontSize: { xs: '0.82rem', md: '0.85rem' } }}
                                         >
                                             {perf.desc}
                                         </Typography>
