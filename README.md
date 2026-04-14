@@ -27,6 +27,18 @@
 - **Data Integrity**: Supabase RLS(Row Level Security)를 통한 안전한 데이터 접근 제어
 - **Audit System**: 모든 데이터 변경 사항에 대한 감사 로그(Audit Log) 자동 기록
 
+## 📱 모바일 반응형 및 사용자 경험 (Mobile & UX)
+- **Responsive Navigation**: 모바일 기기에 최적화된 사이드바 및 햄버거 메뉴 UI
+- **Hero Video Cover Scaling**: 모바일 세로 모드에서도 영상이 화면을 꽉 채우도록 `177.78vh` 너비와 커버 스케일링 기술 적용
+- **Scroll & View Transitions**: 스크롤 상태에 따른 헤더 가시성 변화 및 섹션별 진입 애니메이션 최적화
+- **Interactive Indicators**: 비디오 슬라이드 인디케이터 및 스크롤 유도 애니메이션 탑재
+
+## 🖋️ 타이포그래피 최적화 (CJK Typography)
+한국어의 특성을 고려한 수준 높은 텍스트 레이아웃을 제공합니다.
+- **CJK Justification**: `.cjk-justify` 클래스를 통해 한국어 문장 양쪽 정렬 시 발생하는 어색한 자간 문제를 `word-break: break-all`과 `hyphens: auto`를 결합하여 해결
+- **Natural Line Breaking**: `word-break: auto-phrase` (Chrome 119+)를 선제적으로 적용하여 한국어 구문 단위의 자연스러운 줄바꿈 지원
+- **Premium Serif Fonts**: `Shilla_Culture` 및 `Noto Serif KR` 폰트를 적재적소에 배치하여 고전적 품격 강조
+
 ## 🛠️ 기술 스택
 - **Frontend**: `React 19`, `Vite`, `Material UI (MUI)`, `Framer Motion`
 - **Backend/Database**: `Supabase` (PostgreSQL, Auth, Storage)
@@ -34,10 +46,11 @@
 - **Security**: `DOMPurify`, `CSP`, `Rate Limiting`
 - **Testing**: `Vitest`, `ESLint`
 
-## 📅 프로젝트 로드맵 (Completed ✅)
+## 📅 프로젝트 로드맵
 - [x] **Phase 1~4**: 핵심 아키텍처 및 디자인 시스템 구축
 - [x] **Phase 5**: 보안 시스템 고도화 및 유닛 테스트 완료
-- [x] **Phase 6**: Vercel 배포 및 운영 환경 최적화 완료 (2026-03-08)
+- [x] **Phase 6**: Vercel 배포 및 운영 환경 최적화 완료
+- [x] **Phase 7**: 모바일 반응형 고도화 및 CJK 타이포그래피 정밀 최적화 (2026-04-14) ✅
 
 ## 💻 로컬 개발 환경 설정
 
