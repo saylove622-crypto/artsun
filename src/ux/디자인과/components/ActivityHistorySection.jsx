@@ -45,7 +45,7 @@ export default function ActivityHistorySection() {
         <Box
             id="history"
             sx={{
-                py: { xs: 5, md: 7 },
+                py: { xs: 13, md: 7 },
                 bgcolor: '#fdfbf6',
                 position: 'relative',
                 overflow: 'hidden',

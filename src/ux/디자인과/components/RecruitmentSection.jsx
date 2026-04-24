@@ -68,7 +68,7 @@ export default function RecruitmentSection() {
         <Box
             id="recruitment"
             sx={{
-                py: { xs: 5, md: 7 },
+                py: { xs: 13, md: 12 },
                 bgcolor: 'background.default',
                 position: 'relative',
                 overflow: 'hidden',
@@ -160,7 +160,7 @@ export default function RecruitmentSection() {
                 </Box>
 
                 {/* Sliding Content */}
-                <Box sx={{ position: 'relative', minHeight: { xs: 'auto', sm: 800, md: 600 } }}>
+                <Box sx={{ position: 'relative', minHeight: { xs: 1550, sm: 1200, md: 850 } }}>
                     <AnimatePresence initial={false} custom={direction}>
                         <motion.div
                             key={activeTab}
@@ -182,7 +182,7 @@ export default function RecruitmentSection() {
                                 /* ────── Member Recruitment ────── */
                                 <Paper
                                     sx={{
-                                        p: { xs: 4, md: 7 },
+                                        p: { xs: 2.5, sm: 4, md: 7 },
                                         borderRadius: '8px',
                                         boxShadow: '0 10px 50px rgba(0,0,0,0.04)',
                                         border: '1px solid rgba(49,70,107,0.06)',
@@ -318,8 +318,9 @@ export default function RecruitmentSection() {
                                                     sx={{
                                                         whiteSpace: 'pre-wrap',
                                                         color: 'text.secondary',
-                                                        lineHeight: 1.9,
-                                                        fontSize: '0.85rem',
+                                                        lineHeight: 2.0,
+                                                        fontSize: '0.9rem',
+                                                        pb: 2,
                                                     }}
                                                 >
                                                     {recruitmentData.recruitment_info || '관리자 페이지에서 상세 내용을 입력해 주세요.'}
@@ -332,7 +333,7 @@ export default function RecruitmentSection() {
                                 /* ────── Certification Guide ────── */
                                 <Paper
                                     sx={{
-                                        p: { xs: 4, md: 7 },
+                                        p: { xs: 2.5, sm: 4, md: 7 },
                                         borderRadius: '8px',
                                         boxShadow: '0 10px 50px rgba(0,0,0,0.04)',
                                         border: '1px solid rgba(49,70,107,0.06)',
@@ -356,8 +357,8 @@ export default function RecruitmentSection() {
                                                 sx={{
                                                     whiteSpace: 'pre-wrap',
                                                     color: 'text.secondary',
-                                                    lineHeight: 2,
-                                                    fontSize: '0.92rem',
+                                                    lineHeight: 2.1,
+                                                    fontSize: '0.95rem',
                                                 }}
                                             >
                                                 {recruitmentData.certification_info || '자격증 과정에 대한 정보를 준비 중입니다.\n\n관리자 페이지에서 내용을 입력해 주세요.'}

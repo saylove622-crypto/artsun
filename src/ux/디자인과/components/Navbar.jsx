@@ -88,7 +88,7 @@ export default function Navbar() {
                         ? `1px solid ${theme.palette.divider}`
                         : '1px solid transparent',
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    zIndex: 1300,
+                    zIndex: 1100,
                 }}
             >
                 <Toolbar
@@ -218,7 +218,11 @@ export default function Navbar() {
                     {isMobile && (
                         <IconButton
                             onClick={() => setDrawerOpen(true)}
-                            sx={{ color: theme.palette.text.primary }}
+                            sx={{
+                                color: theme.palette.text.primary,
+                                opacity: drawerOpen ? 0 : 1,
+                                transition: 'opacity 0.2s ease',
+                            }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -233,7 +237,7 @@ export default function Navbar() {
                 onClose={() => setDrawerOpen(false)}
                 PaperProps={{
                     sx: {
-                        width: '280px',
+                        width: '240px',
                         bgcolor: theme.palette.background.default,
                         backdropFilter: 'blur(20px)',
                         borderLeft: `1px solid ${theme.palette.divider}`,
@@ -254,10 +258,10 @@ export default function Navbar() {
                             <ListItemButton
                                 onClick={() => scrollToSection(id)}
                                 sx={{
-                                    py: 1.5,
-                                    borderBottom: '1px solid rgba(240, 236, 228, 0.04)',
+                                    py: 2,
+                                    borderBottom: `1px solid ${theme.palette.divider}`,
                                     '&:hover': {
-                                        bgcolor: 'rgba(150, 0, 0, 0.08)',
+                                        bgcolor: 'rgba(150, 0, 0, 0.04)',
                                     },
                                 }}
                             >
@@ -269,9 +273,9 @@ export default function Navbar() {
                                         fontWeight: activeSection === id ? 600 : 400,
                                         color:
                                             activeSection === id
-                                                ? '#960000'
-                                                : 'rgba(240, 236, 228, 0.75)',
-                                        letterSpacing: '0.05em',
+                                                ? theme.palette.primary.main
+                                                : theme.palette.text.primary,
+                                        letterSpacing: '0.02em',
                                     }}
                                 />
                             </ListItemButton>
@@ -289,13 +293,13 @@ export default function Navbar() {
                             '&:hover': { bgcolor: 'rgba(150,0,0,0.08)' },
                         }}
                     >
-                        <LockOutlinedIcon sx={{ fontSize: 16, mr: 1.5, color: 'rgba(240,236,228,0.3)' }} />
+                        <LockOutlinedIcon sx={{ fontSize: 16, mr: 1.5, color: theme.palette.text.secondary }} />
                         <ListItemText
                             primary="관리자 페이지"
                             primaryTypographyProps={{
                                 fontFamily: '"Noto Sans KR", sans-serif',
                                 fontSize: '0.8rem',
-                                color: 'rgba(240,236,228,0.3)',
+                                color: theme.palette.text.secondary,
                                 letterSpacing: '0.05em',
                             }}
                         />
@@ -308,7 +312,8 @@ export default function Navbar() {
                         sx={{
                             fontFamily: '"Noto Serif KR", serif',
                             fontSize: '0.75rem',
-                            color: 'rgba(240, 236, 228, 0.25)',
+                            color: theme.palette.text.secondary,
+                            opacity: 0.5,
                             letterSpacing: '0.1em',
                             textAlign: 'center',
                         }}

@@ -13,7 +13,7 @@ export default function LocationSection() {
     };
 
     return (
-        <Box sx={{ py: { xs: 5, md: 7 }, bgcolor: '#fdfaf6' }} id="location">
+        <Box sx={{ py: { xs: 13, md: 7 }, bgcolor: '#fdfaf6' }} id="location">
             <Container maxWidth="lg">
                 <Box sx={{ textAlign: 'center', mb: 4 }}>
                     <Typography variant="sectionLabel" sx={{ color: 'primary.main', mb: 0.4, display: 'block' }}>LOCATION</Typography>

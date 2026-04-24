@@ -1256,7 +1256,7 @@ function DonationManagement() {
     const [accountData, setAccountData] = useState({ bank_name: '', account_number: '', account_holder: '', message: '' });
     const [isDonorDialogOpen, setIsDonorDialogOpen] = useState(false);
     const [editDonor, setEditDonor] = useState(null);
-    const [donorForm, setDonorForm] = useState({ name: '', donated_at: '', amount: '', message: '', is_visible: true });
+    const [donorForm, setDonorForm] = useState({ name: '', donated_at: '', amount: '', message: '', is_visible: true, group_name: '개인' });
     const [snack, setSnack] = useState({ open: false, message: '', severity: 'success' });
 
     const showSnack = (message, severity = 'success') => setSnack({ open: true, message, severity });
@@ -1273,10 +1273,10 @@ function DonationManagement() {
     const handleOpenDonorDialog = (donor = null) => {
         if (donor) {
             setEditDonor(donor);
-            setDonorForm({ name: donor.name, donated_at: donor.donated_at || '', amount: donor.amount || '', message: donor.message || '', is_visible: donor.is_visible });
+            setDonorForm({ name: donor.name, donated_at: donor.donated_at || '', amount: donor.amount || '', message: donor.message || '', is_visible: donor.is_visible, group_name: donor.group_name || '개인' });
         } else {
             setEditDonor(null);
-            setDonorForm({ name: '', donated_at: '', amount: '', message: '', is_visible: true });
+            setDonorForm({ name: '', donated_at: '', amount: '', message: '', is_visible: true, group_name: '개인' });
         }
         setIsDonorDialogOpen(true);
     };
@@ -1289,6 +1289,7 @@ function DonationManagement() {
             amount: donorForm.amount ? parseInt(donorForm.amount) : null,
             message: donorForm.message.trim() || null,
             is_visible: donorForm.is_visible,
+            group_name: donorForm.group_name.trim() || '개인',
         };
         const { error } = editDonor
             ? await updateDonor(editDonor.id, payload)
@@ -1438,6 +1439,16 @@ function DonationManagement() {
                 <DialogContent>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
                         <TextField label="성명 *" fullWidth size="small" value={donorForm.name} onChange={e => setDonorForm({ ...donorForm, name: e.target.value })} sx={textFieldSx} />
+                        <TextField
+                            label="그룹명"
+                            fullWidth size="small"
+                            placeholder="예: 개인, 단체, 기업, 가족 등"
+                            value={donorForm.group_name}
+                            onChange={e => setDonorForm({ ...donorForm, group_name: e.target.value })}
+                            helperText="동일한 그룹명을 가진 후원자들이 묶여서 표시됩니다"
+                            FormHelperTextProps={{ sx: { color: 'rgba(240,236,228,0.3)', fontSize: '0.68rem' } }}
+                            sx={textFieldSx}
+                        />
                         <TextField label="후원 일자" type="date" fullWidth size="small" InputLabelProps={{ shrink: true }} value={donorForm.donated_at} onChange={e => setDonorForm({ ...donorForm, donated_at: e.target.value })} sx={textFieldSx} />
                         <TextField label="후원 금액 (원, 선택)" type="number" fullWidth size="small" value={donorForm.amount} onChange={e => setDonorForm({ ...donorForm, amount: e.target.value })} sx={textFieldSx} />
                         <TextField label="한마디 (선택)" fullWidth size="small" placeholder="예: 좋은 공연 많이 해주세요" value={donorForm.message} onChange={e => setDonorForm({ ...donorForm, message: e.target.value })} sx={textFieldSx} />

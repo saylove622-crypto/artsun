@@ -44,7 +44,7 @@ export default function PerformancesSection() {
         <Box
             id="performances"
             sx={{
-                py: { xs: 5, md: 7 },
+                py: { xs: 13, md: 7 },
                 position: 'relative',
                 bgcolor: '#fdfbf6',
             }}

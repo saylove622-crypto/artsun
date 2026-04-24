@@ -3,26 +3,44 @@ import { Box, Container, Typography, Grid, Divider } from '@mui/material';
 import { supabase } from '../../../system/utils/supabase';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import StarIcon from '@mui/icons-material/Star';
+import GroupIcon from '@mui/icons-material/Group';
 import { motion } from 'framer-motion';
 
 export default function DonationSection() {
     const [donationData, setDonationData] = useState({ bank_name: '', account_number: '', account_holder: '', message: '' });
     const [donors, setDonors] = useState([]);
+    const [groupedDonors, setGroupedDonors] = useState({});
+    const [groupOrder, setGroupOrder] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             const [settingsRes, donorsRes] = await Promise.all([
                 supabase.from('site_settings').select('*').eq('key', 'donation').single(),
-                supabase.from('donors').select('name, donated_at, message, amount').eq('is_visible', true).order('donated_at', { ascending: false }),
+                supabase.from('donors').select('name, donated_at, message, amount, group_name').eq('is_visible', true).order('donated_at', { ascending: false }),
             ]);
             if (settingsRes.data) setDonationData(settingsRes.data.value);
-            if (donorsRes.data) setDonors(donorsRes.data);
+            if (donorsRes.data) {
+                setDonors(donorsRes.data);
+                // 그룹별 분류
+                const grouped = {};
+                const order = [];
+                donorsRes.data.forEach(donor => {
+                    const g = donor.group_name || '개인';
+                    if (!grouped[g]) {
+                        grouped[g] = [];
+                        order.push(g);
+                    }
+                    grouped[g].push(donor);
+                });
+                setGroupedDonors(grouped);
+                setGroupOrder(order);
+            }
         };
         fetchData();
     }, []);
 
     return (
-        <Box sx={{ py: { xs: 5, md: 7 }, bgcolor: 'background.default' }} id="donation">
+        <Box sx={{ py: { xs: 13, md: 7 }, bgcolor: 'background.default' }} id="donation">
             <Container maxWidth="md">
 
                 {/* Section Header */}
@@ -63,7 +81,7 @@ export default function DonationSection() {
                                 letterSpacing: '0.3em',
                                 color: '#960000',
                                 textTransform: 'uppercase',
-                                mb: 0.2, // 간격 80% 축소
+                                mb: 0.2,
                             }}>
                                 Our Supporters
                             </Typography>
@@ -74,38 +92,86 @@ export default function DonationSection() {
                                 fontWeight: 700,
                                 color: 'text.primary',
                                 letterSpacing: '0.04em',
-                                mb: 4,
+                                mb: 5,
                             }}>
                                 아르선 후원자 전당
                             </Typography>
 
-                            {/* 이름 나열 */}
-                            <Box sx={{ lineHeight: 2.4, mb: 3, maxWidth: 700, mx: 'auto' }}>
-                                {donors.map((donor, idx) => (
-                                    <motion.span
-                                        key={idx}
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
+                            {/* 그룹별 분류 */}
+                            <Box sx={{ maxWidth: 700, mx: 'auto' }}>
+                                {groupOrder.map((groupName, gIdx) => (
+                                    <motion.div
+                                        key={groupName}
+                                        initial={{ opacity: 0, y: 12 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.4, delay: idx * 0.06 }}
-                                        style={{ display: 'inline' }}
+                                        transition={{ duration: 0.5, delay: gIdx * 0.1 }}
                                     >
-                                        <Typography
-                                            component="span"
-                                            sx={{
-                                                fontFamily: '"Noto Serif KR", serif',
-                                                fontWeight: 600,
-                                                fontSize: { xs: '0.9rem', md: '1rem' },
-                                                color: 'text.primary',
-                                                mx: 0.36, // 간격 10% 추가 축소
-                                                display: 'inline-block', // 이름이 통째로 넘어가게 설정
-                                                whiteSpace: 'nowrap', // 이름 중간에서 줄바꿈 방지
-                                            }}
-                                        >
-                                            {donor.name}
-                                        </Typography>
+                                        <Box sx={{ mb: gIdx < groupOrder.length - 1 ? 5 : 3 }}>
+                                            {/* 그룹 레이블 */}
+                                            <Box sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: 1,
+                                                mb: 2.5,
+                                            }}>
+                                                <Box sx={{ flex: 1, height: '1px', bgcolor: 'divider', maxWidth: 60 }} />
+                                                <Box sx={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: 0.6,
+                                                    px: 1.5,
+                                                    py: 0.4,
+                                                    borderRadius: '20px',
+                                                    border: '1px solid',
+                                                    borderColor: 'divider',
+                                                    bgcolor: 'background.paper',
+                                                }}>
+                                                    <GroupIcon sx={{ fontSize: 13, color: 'primary.main', opacity: 0.7 }} />
+                                                    <Typography sx={{
+                                                        fontSize: '0.65rem',
+                                                        fontWeight: 600,
+                                                        letterSpacing: '0.12em',
+                                                        color: 'text.secondary',
+                                                        textTransform: 'uppercase',
+                                                    }}>
+                                                        {groupName}
+                                                    </Typography>
+                                                </Box>
+                                                <Box sx={{ flex: 1, height: '1px', bgcolor: 'divider', maxWidth: 60 }} />
+                                            </Box>
 
-                                    </motion.span>
+                                            {/* 이름 나열 */}
+                                            <Box sx={{ lineHeight: 2.4 }}>
+                                                {groupedDonors[groupName].map((donor, idx) => (
+                                                    <motion.span
+                                                        key={idx}
+                                                        initial={{ opacity: 0 }}
+                                                        whileInView={{ opacity: 1 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.4, delay: idx * 0.05 }}
+                                                        style={{ display: 'inline' }}
+                                                    >
+                                                        <Typography
+                                                            component="span"
+                                                            sx={{
+                                                                fontFamily: '"Noto Serif KR", serif',
+                                                                fontWeight: 600,
+                                                                fontSize: { xs: '0.9rem', md: '1rem' },
+                                                                color: 'text.primary',
+                                                                mx: 0.5,
+                                                                display: 'inline-block',
+                                                                whiteSpace: 'nowrap',
+                                                            }}
+                                                        >
+                                                            {donor.name}
+                                                        </Typography>
+                                                    </motion.span>
+                                                ))}
+                                            </Box>
+                                        </Box>
+                                    </motion.div>
                                 ))}
                             </Box>
 

@@ -34,7 +34,7 @@ export default function AboutSection() {
         <Box
             id="about"
             sx={{
-                py: { xs: 5, md: 7 },
+                py: { xs: 13, md: 7 },
                 position: 'relative',
                 overflow: 'hidden',
             }}

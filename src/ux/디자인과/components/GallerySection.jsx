@@ -133,7 +133,7 @@ export default function GallerySection() {
         <Box
             id="gallery"
             sx={{
-                py: { xs: 5, md: 7 },
+                py: { xs: 13, md: 7 },
                 position: 'relative',
             }}
         >
